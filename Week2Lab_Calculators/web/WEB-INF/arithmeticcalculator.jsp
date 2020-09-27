@@ -9,26 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Arithmetic Calculator</title>
     </head>
     <body>
-        <form action="arithmetic" method="post">
-        <h1>Arithmetic Calculator</h1>
-        <label>First:</label>
-        <input type="text" name="first" value=""${first}>
-        <br>
-        <label>Second:</label>
-        <input type="text" name="second" value=""${last}>
-        <br>
-        <input type="submit" value ="+" name="mathop">
-        <input type="submit" value ="-" name="mathop">
-        <input type="submit" value ="*" name="mathop">
-        <input type="submit" value ="%" name="mathop">
-        <br>
-        <label>Result:</label>
-        <p>${result}</p>
-        <br>
-        <a href="/age">Age Calculator</a>
+        <form action="arithmetic" method="post" autocomplete="off">
+            <h1>Arithmetic Calculator</h1>
+            <label>First:</label>
+            <input type="text" name="first" value=${first}>
+            <br>
+            <label>Second:</label>
+            <input type="text" name="second" value=${second}>
+            <br>
+            <input type="submit" value ="+" name="mathop">
+            <input type="submit" value ="-" name="mathop">
+            <input type="submit" value ="*" name="mathop">
+            <input type="submit" value ="%" name="mathop">
+            <br>
+            <label>Result:</label>
+            <p>${result}</p>
+            <br>
+            <a href="age">Age Calculator</a>
         </form>
     </body>
 </html>

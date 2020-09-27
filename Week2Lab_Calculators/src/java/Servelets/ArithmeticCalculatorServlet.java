@@ -23,6 +23,8 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
 //        processRequest(request, response);
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
                 .forward(request, response);
+        String result = "---";
+        request.setAttribute("result", result);
     }
 
     @Override
@@ -30,45 +32,49 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         String first = request.getParameter("first");
-        String last = request.getParameter("last");
-
+        String second = request.getParameter("second");
         request.setAttribute("first", first);
-        request.setAttribute("last", last);
+        request.setAttribute("second", second);
 
         if (first == null || first.equals("") || first.matches(".*[a-z].*")
-                || last == null || last.equals("") || last.matches(".*[a-z].*")) {
-            request.setAttribute("error", "Invalid.");
+                || second == null || second.equals("") || second.matches(".*[a-z].*")) {
+            request.setAttribute("result", "Invalid.");
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
                     .forward(request, response);
+
             return;
 
         } else {
             int intfirst = Integer.parseInt(first);
-            int intlast = Integer.parseInt(last);
+            int intsecond = Integer.parseInt(second);
             String operator = request.getParameter("mathop");
-            String result = "---";
-            request.setAttribute("result", result);
-            int intresult = 0;
+
+            int intresult;
             switch (operator) {
                 case "+":
-                    intresult = intfirst + intlast;
+                    intresult = intfirst + intsecond;
                     request.setAttribute("result", intresult);
                     break;
                 case "-":
-                    intresult = intfirst - intlast;
+                    intresult = intfirst - intsecond;
                     request.setAttribute("result", intresult);
                     break;
                 case "*":
-                    intresult = intfirst * intlast;
+                    intresult = intfirst * intsecond;
                     request.setAttribute("result", intresult);
                     break;
                 case "%":
-                    intresult = intfirst / intlast;
-                    request.setAttribute("result", intresult);
+                    double dfirst = intfirst;
+                    double dsecond = intsecond;
+                    double doubleresult = (dfirst / dsecond);
+                    double dresult = Double.parseDouble(String.format("%.2f", doubleresult));
+                    request.setAttribute("result", dresult);
+
                     break;
             }
 
         }
+
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
                 .forward(request, response);
     }
